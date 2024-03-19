@@ -1,0 +1,48 @@
+.switch-container {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+}
+
+.hidden {
+  display: none;
+}
+
+.switch {
+  cursor: pointer;
+}
+
+.dark-mode {
+  background-color: #212121;
+  color: #cfcfcf;
+}
+.night {
+  fill: #cfcfcf;
+}
+.calc-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+.dark-mode .calc-body {
+  border-color: #fff !important;
+}
+
+.dark-mode .title-text {
+  color: #fff;
+}
+
+.calc-body {
+  border: 1px solid black;
+  width: 25rem;
+  height: 30rem;
+  border-radius: 4px;
+}
+
+.title-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
