@@ -46,3 +46,37 @@
   align-items: center;
   padding: 2rem;
 }
+
+.calc-display {
+  height: 23%;
+  border-radius: 2px;
+  border-bottom: 1px solid black;
+}
+.dark-mode .calc-display {
+  border-color: #fff !important;
+}
+
+.calc-inputs {
+  display: flex;
+  height: 77%;
+  justify-content: space-between;
+  width: 100%;
+  overflow: hidden;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.rows span {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.4rem;
+}
+
+.span-border {
+  border: 1px solid black;
+}
