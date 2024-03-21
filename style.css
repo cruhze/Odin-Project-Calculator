@@ -8,7 +8,24 @@
   display: none;
 }
 
-.switch {
+.switch,
+.one,
+.two,
+.three,
+.four,
+.five,
+.six,
+.seven,
+.eight,
+.nine,
+.dot,
+.equal,
+.clear,
+.multiply,
+.add,
+.subtract,
+.divide,
+.zero {
   cursor: pointer;
 }
 
@@ -62,6 +79,7 @@
   justify-content: space-between;
   width: 100%;
   overflow: hidden;
+  font-size: 2.5rem;
 }
 
 .rows {
@@ -74,9 +92,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1.4rem;
-}
-
-.span-border {
-  border: 1px solid black;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
