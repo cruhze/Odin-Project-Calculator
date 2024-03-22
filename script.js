@@ -7,59 +7,34 @@ switcher.addEventListener("click", function () {
   lightIcon.classList.toggle("hidden");
 });
 
-const calculator = {
-  addition: document.querySelector(".add"),
-  subtract: document.querySelector(".subtraction"),
-  divide: document.querySelector(".division"),
-  multiply: document.querySelector(".multiply"),
-  one: document.querySelector(".one"),
-  two: document.querySelector(".two"),
-  three: document.querySelector(".three"),
-  four: document.querySelector(".four"),
-  five: document.querySelector(".five"),
-  six: document.querySelector(".six"),
-  seven: document.querySelector(".seven"),
-  eight: document.querySelector(".eight"),
-  nine: document.querySelector(".nine"),
-  zero: document.querySelector(".zero"),
-  equal: document.querySelector(".equal"),
-  dot: document.querySelector(".dot"),
-  clear: document.querySelector(".clear"),
-};
+let total = 0;
+const display = document.querySelector(".dis-num");
 
-calculator.one.addEventListener("click", function () {
-  return "one";
+document.querySelectorAll(".rows span").forEach((item) => {
+  item.addEventListener("click", (event) => {
+    updateDisplay(event.target.textContent);
+  });
 });
-calculator.two.addEventListener("click", function () {
-  return "two";
-});
-calculator.three.addEventListener("click", function () {
-  return "three";
-});
-calculator.four.addEventListener("click", function () {
-  return "four";
-});
-calculator.five.addEventListener("click", function () {
-  return "five";
-});
-calculator.six.addEventListener("click", function () {
-  return "six";
-});
-calculator.seven.addEventListener("click", function () {
-  return "seven";
-});
-calculator.eight.addEventListener("click", function () {
-  return "eight";
-});
-calculator.nine.addEventListener("click", function () {
-  return "nine";
-});
-calculator.zero.addEventListener("click", function () {
-  return "zero";
-});
-calculator.dot.addEventListener("click", function () {
-  return "dot";
-});
+
+function updateDisplay(digit) {
+  const currentText = display.textContent;
+  //if 24 numbers exit function so it stops updating numbers
+  if (currentText.length >= 24) {
+    return;
+  }
+  // see if current length is equal or less than
+  if (currentText.length >= 15) {
+    display.classList.add("smaller-text"); // if it goes longer make text even smaller
+  } else if (currentText.length >= 9) {
+    display.classList.add("small-text"); // if it goes longer make text smaller
+  }
+
+  if (currentText === "0") {
+    display.textContent = digit;
+  } else {
+    display.textContent += digit;
+  }
+}
 function add(a, b) {
   return a + b;
 }
@@ -68,8 +43,14 @@ function subtract(a, b) {
   return a - b;
 }
 
-function multiply(a, b) {
-  return a * b;
+function multiply() {
+  const display = document.querySelector(".dis-num");
+  const currentNumber = parseFloat(display.textContent);
+
+  total *= currentNumber;
+
+  // Reset the display to show the total
+  display.textContent = total;
 }
 
 function divide(a, b) {

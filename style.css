@@ -68,9 +68,28 @@
   height: 23%;
   border-radius: 2px;
   border-bottom: 1px solid black;
+  overflow: hidden;
 }
 .dark-mode .calc-display {
   border-color: #fff !important;
+}
+
+.dis-num {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 98%;
+  height: 100%;
+  font-size: 4.5rem;
+  padding-right: 1rem;
+  transition: font-size 0.2s;
+}
+
+.small-text {
+  font-size: 3rem;
+}
+.smaller-text {
+  font-size: 2rem;
 }
 
 .calc-inputs {
