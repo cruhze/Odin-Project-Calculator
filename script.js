@@ -6,57 +6,86 @@ switcher.addEventListener("click", function () {
   nightIcon.classList.toggle("hidden");
   lightIcon.classList.toggle("hidden");
 });
-
 let total = 0;
+let currentNumber = 0;
+let operator = "";
+let shouldResetDisplay = false;
+
 const display = document.querySelector(".dis-num");
 
 document.querySelectorAll(".rows span").forEach((item) => {
   item.addEventListener("click", (event) => {
-    updateDisplay(event.target.textContent);
+    handleInput(event.target.textContent);
   });
 });
 
-function updateDisplay(digit) {
-  const currentText = display.textContent;
-  //if 24 numbers exit function so it stops updating numbers
-  if (currentText.length >= 24) {
-    return;
-  }
-  // see if current length is equal or less than
-  if (currentText.length >= 15) {
-    display.classList.add("smaller-text"); // if it goes longer make text even smaller
-  } else if (currentText.length >= 9) {
-    display.classList.add("small-text"); // if it goes longer make text smaller
+function handleInput(input) {
+  if (shouldResetDisplay) {
+    display.textContent = "";
+    shouldResetDisplay = false;
   }
 
-  if (currentText === "0") {
+  if (!isNaN(parseInt(input)) || input === ".") {
+    updateDisplay(input);
+  } else if (input === "AC") {
+    clearDisplay();
+  } else if (input === "=") {
+    calculate();
+  } else {
+    // If an operator is clicked
+    operator = input;
+    total = parseFloat(display.textContent);
+    shouldResetDisplay = true;
+  }
+}
+
+function updateDisplay(digit) {
+  const currentText = display.textContent;
+
+  if (currentText === "0" || shouldResetDisplay) {
     display.textContent = digit;
+    shouldResetDisplay = false;
   } else {
     display.textContent += digit;
   }
-}
-function add(a, b) {
-  return a + b;
-}
 
-function subtract(a, b) {
-  return a - b;
-}
-
-function multiply() {
-  const display = document.querySelector(".dis-num");
-  const currentNumber = parseFloat(display.textContent);
-
-  total *= currentNumber;
-
-  // Reset the display to show the total
-  display.textContent = total;
-}
-
-function divide(a, b) {
-  if (b === 0) {
-    return "Cannot be divided by zero";
-  } else {
-    return a / b;
+  if (display.textContent.length >= 15) {
+    display.classList.add("smaller-text");
+  } else if (display.textContent.length >= 9) {
+    display.classList.add("small-text");
   }
+}
+
+function clearDisplay() {
+  display.textContent = "0";
+  shouldResetDisplay = false;
+}
+
+function calculate() {
+  const secondNumber = parseFloat(display.textContent);
+  switch (operator) {
+    case "+":
+      total += secondNumber;
+      break;
+    case "-":
+      total -= secondNumber;
+      break;
+    case "*":
+      total *= secondNumber;
+      break;
+    case "/":
+      if (secondNumber !== 0) {
+        total /= secondNumber;
+      } else {
+        display.textContent = "Cannot divide by zero";
+        shouldResetDisplay = true;
+        return;
+      }
+      break;
+    default:
+      break;
+  }
+
+  display.textContent = total.toString();
+  shouldResetDisplay = true;
 }
